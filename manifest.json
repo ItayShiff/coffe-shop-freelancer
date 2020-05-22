@@ -1,0 +1,16 @@
+{
+	"name": "Second Slice Cafe",
+	"short_name": "Second Slice Cafe",
+	"icons": [
+		{
+			"src": "/images/second-slice-logo-favicon.png",
+			"type": "image/png",
+			"sizes": "384x384"
+		}
+	],
+	"start_url": "./",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"theme_color": "#737373",
+	"background_color": "#f3f3f3"
+}
