@@ -3,7 +3,7 @@
 	"short_name": "Second Slice Cafe",
 	"icons": [
 		{
-			"src": "/images/second-slice-logo-favicon.png",
+			"src": "./images/second-slice-logo-favicon.png",
 			"type": "image/png",
 			"sizes": "384x384"
 		}
