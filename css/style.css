@@ -163,6 +163,7 @@ header a:active {
 .gridInnerHomepage div {
 	width: 75%;
 }
+
 @media screen and (min-width: 860px) {
 	.gridInnerHomepage div[down="true"],
 	img[down="true"] {
@@ -207,7 +208,7 @@ header a:active {
 }
 
 #menu {
-	padding: 25px 0;
+	padding-bottom: 25px;
 	background-image: url(../images/menuBackground.jpg);
 	background-attachment: fixed;
 	background-position: center;
@@ -276,7 +277,9 @@ header a:active {
 #contactInnerText > div:last-child div:first-child {
 	padding-bottom: 30px;
 }
-
+:target {
+	padding-top: 90px;
+}
 #map {
 	padding: 25px 0;
 	padding-top: 70px;
@@ -284,36 +287,52 @@ header a:active {
 #map h2 {
 	padding-bottom: 20px;
 }
+#googleMap {
+	width: 1000px;
+}
 footer {
-	height: 100px;
 	background-image: url(../images/menuBackground.jpg);
+}
+footer > div {
+	height: 100px;
+
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 }
-footer > img {
+footer > div:last-child {
+	width: 80%;
+	margin: 0 auto;
+	font-size: 14px;
+	line-height: 18px;
+	text-align: left;
+}
+footer > div:first-child > img {
 	height: 80%;
 }
-/* Wrapper of social media networks in footer */
-footer > div:first-of-type {
+/* Wrapper of social media networks in footer > div:first-child */
+footer > div:first-child > div:first-of-type {
 	height: 40%;
 }
-footer > div:first-of-type img {
+footer > div:first-child > div:first-of-type img {
 	height: 100%;
 }
-footer > div:first-of-type a {
+footer > div:first-child > div:first-of-type a {
 	margin-right: 12px;
 }
-footer > div:first-of-type a:last-child {
+footer > div:first-child > div:first-of-type a:last-child {
 	margin-right: 0;
 }
 
-footer div:last-of-type {
+footer > div:first-child div:last-of-type {
 	cursor: pointer;
 }
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 920px) {
+	footer > div:last-child {
+		width: 90%;
+	}
 	html,
 	body {
 		font-size: 17px;
@@ -370,6 +389,9 @@ footer div:last-of-type {
 }
 
 @media screen and (max-width: 860px) {
+	#googleMap {
+		width: 80%;
+	}
 	.gridInnerHomepage {
 		grid-template-columns: 1fr;
 		text-align: center;
@@ -377,13 +399,13 @@ footer div:last-of-type {
 	.gridInnerHomepage div {
 		margin: 0 auto;
 	}
-	footer > img {
+	footer > div:first-child > img {
 		height: 50%;
 	}
-	footer div:last-of-type {
+	footer > div:first-child div:last-of-type {
 		font-size: 14px;
 	}
-	footer > div:first-of-type {
+	footer > div:first-child > div:first-of-type {
 		height: 20%;
 	}
 	#menu {
@@ -392,6 +414,10 @@ footer div:last-of-type {
 }
 
 @media screen and (max-width: 570px) {
+	footer > div:last-child {
+		font-size: 12px;
+		height: 160px;
+	}
 	#contactInnerText {
 		flex-direction: column;
 		text-align: center;
