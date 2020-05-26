@@ -4,6 +4,15 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Second Slice Cafe</title>
+		<meta
+			name="description"
+			content="Second Slice Café is owned and run by husband and wife team, Trevor and
+			Naomi. They first opened their doors in 2015 and have become a popular
+			spot for coffee and small bites by the Northcote community. They have a
+			zero waste policy and use only organic locally sourced ingredients in all their
+			dishes."
+		/>
+		<meta name="keywords" content="Second Slice Café, Trevor and Naomi, Popular Coffee, Northcote" />
 		<link rel="stylesheet" type="text/css" href="./css/style.css" />
 		<link rel="shortcut icon" type="image/png" href="./images/second-slice-favicon.ico" />
 		<link rel="manifest" href="manifest.json" />
@@ -14,10 +23,10 @@
 	<body>
 		<header bigscreen="true">
 			<img src="images/second-slice-logo-favicon.png" />
-			<a href="#">HOME</a>
-			<a href="#aboutus">ABOUT US</a>
-			<a href="#menu">MENU</a>
-			<a href="#contactUs">CONTACT US</a>
+			<a data-change="true" href="#">HOME</a>
+			<a data-change="true" href="#aboutus">ABOUT US</a>
+			<a data-change="true" href="#menu">MENU</a>
+			<a data-change="true" href="#contactUs">CONTACT US</a>
 			<div>
 				<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="images/instagram.png" /></a>
 				<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><img src="./images/fb.png" /></a>
@@ -56,6 +65,7 @@
 						<img src="./images/slider1.jpg" />
 						<div class="blackOverlay"></div>
 						<h1>
+							Second Slice Cafe<br />
 							Locally stoned<br />
 							Zeno Waste
 						</h1>
@@ -64,6 +74,7 @@
 						<img src="./images/slider2.jpg" />
 						<div class="blackOverlay"></div>
 						<h1>
+							Second Slice Cafe<br />
 							Locally stoned<br />
 							Zeno Waste
 						</h1>
@@ -72,6 +83,7 @@
 						<img src="./images/slider3.jpg" />
 						<div class="blackOverlay"></div>
 						<h1>
+							Second Slice Cafe<br />
 							Locally stoned<br />
 							Zeno Waste
 						</h1>
@@ -96,14 +108,14 @@
 					</h2>
 					<div class="gridInnerHomepage">
 						<img src="images/zero-waste.jpg" />
-						<div>
+						<div fromright="true">
 							Our husband and wife team,<br />
 							Trevor & Naomi have<br />
 							proudly owned and operated<br />
 							<span>Second Slice Cake</span>
 							since 2015, serving the Northcote community with delicious foods & coffee made with only the finest, locally sourced ingredients.
 						</div>
-						<div down="true">
+						<div down="true" fromright="false">
 							Through the use of a commercial Biodigester,
 							<span>Second Slice Cake</span>
 							ensures no food goes to waste by converting food waste into a reusable liquid that can be used for flora, fauna or even disposed off without contributing to the 8% of
@@ -120,7 +132,7 @@
 						</div>
 
 						<img src="./images/ozharvest-bus.png" />
-						<div>
+						<div fromright="true">
 							Any spare stocked and housemade ingredients are doanted to
 							<span>OjHonest</span>
 							for distrubtion to the needy.
@@ -131,12 +143,12 @@
 					<h2>Our Menu</h2>
 					<div class="gridInnerHomepage">
 						<img src="images/latte-art.jpg" />
-						<div>
+						<div fromright="true">
 							Locally farmed<br />Eggs Benedict<br />
 							served on in-house<br />
 							baked sourdough
 						</div>
-						<div down="true">
+						<div down="true" fromright="false">
 							Organic spelt sconed<br />
 							with berries
 						</div>
@@ -147,7 +159,7 @@
 							with berries
 						</div>
 						<img src="images/latte-art.jpg" />
-						<div>Fair Trade Certified <br />Arabica Coffe Beans</div>
+						<div fromright="true">Fair Trade Certified <br />Arabica Coffe Beans</div>
 					</div>
 					<div></div>
 				</div>
@@ -215,6 +227,22 @@
 				};
 				var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 				var marker = new google.maps.Marker({ position: { lat: -37.769348, lng: 144.999268 }, map: map });
+				var contentString =
+					'<div id="content">' +
+					"<h1>Second Slice Café</h1>" +
+					`<p>Second Slice Café is owned and run by husband and wife team, Trevor and
+						Naomi. They first opened their doors in 2015 and have become a popular
+						spot for coffee and small bites by the Northcote community. They have a
+						zero waste policy and use only organic locally sourced ingredients in all their
+						dishes.</p>` +
+					"</div>";
+
+				var infowindow = new google.maps.InfoWindow({
+					content: contentString,
+				});
+				marker.addListener("click", function () {
+					infowindow.open(map, marker);
+				});
 			}
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDrcqzef-g6UoHT4nkQKfuRCOR-TjS15I&callback=myMap"></script>
@@ -253,6 +281,61 @@
 			for (let element of clickableElements) {
 				element.onclick = removeHeader;
 			}
+
+			if (window.innerWidth > 900) {
+				// animations with intersection api to get right and left slide variations
+				const observerRight = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.intersectionRatio > 0.33) {
+								entry.target.nextSibling.nextSibling.classList.add("entered");
+							}
+						});
+					},
+					{
+						threshold: [0.33],
+					}
+				);
+				document.querySelectorAll("div[fromright=true]").forEach((rightElem) => observerRight.observe(rightElem.previousSibling.previousSibling));
+
+				const observerLeft = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.intersectionRatio > 0.33) {
+								entry.target.previousSibling.previousSibling.previousSibling.previousSibling.classList.add("entered");
+							}
+						});
+					},
+					{
+						threshold: [0.33],
+					}
+				);
+				document.querySelectorAll("div[fromright=false]").forEach((leftElem) => observerLeft.observe(leftElem.nextSibling.nextSibling.nextSibling.nextSibling));
+			} else {
+				// if it's less than 900px then go with mobile animation mode, just slide up the DIV
+				const observerUp = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.intersectionRatio > 0) {
+							entry.target.classList.add("entered");
+						}
+					});
+				});
+				document.querySelectorAll(".gridInnerHomepage div").forEach((elem) => observerUp.observe(elem));
+			}
+
+			const observerContact = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.intersectionRatio > 0.33) {
+							entry.target.classList.add("entered");
+						}
+					});
+				},
+				{
+					threshold: [0.33],
+				}
+			);
+			observerContact.observe(document.getElementById("contactInnerText"));
 		</script>
 	</body>
 </html>

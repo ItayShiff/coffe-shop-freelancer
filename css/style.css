@@ -34,9 +34,10 @@ h3 {
 h2 {
 	color: #c6d06f;
 	font-family: Satisfy;
-	font-size: 45px;
+	font-size: 55px;
 	line-height: 45px;
 	letter-spacing: 1px;
+	padding-top: 20px;
 }
 /* There are 2 headers, the one of smaller screens is hidden while on wide screen */
 header[bigscreen="false"] {
@@ -53,10 +54,14 @@ header {
 	height: 60px;
 	border-bottom: 3px solid black;
 	padding: 5px 0;
-	background: linear-gradient(0deg, rgba(33, 33, 33, 1) 0%, rgba(56, 56, 56, 1) 67%);
+	background: linear-gradient(0deg, rgba(33, 33, 33, 1) 0%, rgb(82, 82, 82) 67%);
 }
 header img {
 	height: 100%;
+	transition: transform 500ms;
+}
+header img:hover {
+	transform: scale(1.2);
 }
 
 header div {
@@ -82,6 +87,27 @@ header a:focus,
 header a:active {
 	color: white;
 	text-decoration: none;
+}
+header[bigscreen="true"] a[data-change="true"] {
+	position: relative;
+}
+header[bigscreen="true"] a[data-change="true"]::after {
+	content: "";
+	width: 0%;
+	height: 10%;
+	left: 50%;
+	bottom: -7px;
+	position: absolute;
+	background: #bafff8;
+	transition: width 500ms, left 500ms;
+}
+header[bigscreen="true"] a[data-change="true"]:hover::after {
+	width: 100%;
+	left: 0;
+}
+
+main {
+	overflow: hidden;
 }
 
 /* When clicking on a target hRef so in order to show the caption of that chapter, adding padding top with the height of header */
@@ -117,6 +143,28 @@ header a:active {
 	width: 100%;
 	height: 100vh;
 	background: rgba(77, 71, 71, 0.4);
+	animation: overlayChange 10s infinite linear;
+}
+
+@keyframes overlayChange {
+	0% {
+		background: rgba(77, 71, 71, 0.4);
+	}
+	20% {
+		background: rgba(110, 37, 37, 0.2);
+	}
+	40% {
+		background: rgba(28, 87, 36, 0.2);
+	}
+	60% {
+		background: rgba(89, 128, 128, 0.3);
+	}
+	80% {
+		background: rgba(129, 0, 71, 0.1);
+	}
+	100% {
+		background: rgba(77, 71, 71, 0.4);
+	}
 }
 
 .swiper-slide h1 {
@@ -127,12 +175,13 @@ header a:active {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	font-family: Satisfy;
-	color: #a5d8c2;
+	color: #5ffff0;
 	font-size: 65px;
-	background: rgba(255, 255, 255, 0.1);
+	background: rgba(255, 255, 255, 0.6);
+	box-shadow: 0px 0px 20px 3px rgb(143, 143, 143);
 	padding: 15px 25px;
 	border-radius: 15px;
-	text-shadow: 1px 0px 2px black, -1px 0px 2px black, 0px 1px 2px black, 0px -1px 2px black;
+	text-shadow: 1px 0px 2px rgb(173, 173, 173), -1px 0px 2px black, 0px 1px 2px black, 0px -1px 2px black;
 }
 .swiper-slide img {
 	width: 100%;
@@ -169,6 +218,40 @@ header a:active {
 	width: 75%;
 }
 
+@media screen and (min-width: 900px) {
+	div[fromright="true"] {
+		position: relative;
+		left: 150%;
+		opacity: 0;
+		transition: left 750ms, opacity 1s;
+	}
+	div[fromright="false"] {
+		position: relative;
+		right: 150%;
+		opacity: 0;
+		transition: right 750ms, opacity 1s;
+	}
+	div[fromright="true"].entered {
+		left: 0;
+		opacity: 1;
+	}
+	div[fromright="false"].entered {
+		right: 0;
+		opacity: 1;
+	}
+}
+@media screen and (max-width: 900px) {
+	.gridInnerHomepage div {
+		opacity: 0;
+		transform: translateY(100px);
+		transition: transform 750ms, opacity 1s;
+	}
+	.gridInnerHomepage div.entered {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 @media screen and (min-width: 860px) {
 	.gridInnerHomepage div[down="true"],
 	img[down="true"] {
@@ -201,6 +284,24 @@ header a:active {
 	margin: 0 auto;
 	max-height: 50vh;
 }
+.gridInnerHomepage img:hover {
+	animation: slideSideToSide 1.95s linear infinite;
+}
+@keyframes slideSideToSide {
+	0% {
+		transform: rotateZ(0deg);
+	}
+	25% {
+		transform: rotateZ(5deg);
+	}
+
+	75% {
+		transform: rotateZ(-5deg);
+	}
+	100% {
+		transform: rotateZ(0deg);
+	}
+}
 #aboutus {
 	padding-bottom: 90px;
 	background-image: url(../images/aboutBackground.jpeg);
@@ -229,7 +330,7 @@ header a:active {
 }
 
 #menu h2 {
-	color: #dfe0d7;
+	color: white;
 }
 
 #contactUs h2 {
@@ -241,7 +342,15 @@ header a:active {
 	display: flex;
 	text-align: left;
 	justify-content: center;
+	transform: rotateX(90deg);
+	opacity: 0;
+	transition: transform 1.25s, opacity 1.5s;
 }
+#contactInnerText.entered {
+	transform: rotateX(0deg);
+	opacity: 1;
+}
+
 #contactInnerText > div {
 	margin-right: auto;
 }
@@ -288,10 +397,15 @@ header a:active {
 	padding-top: 70px;
 }
 #map h2 {
-	padding-bottom: 20px;
+	padding-bottom: 25px;
 }
 #googleMap {
-	width: 1000px;
+	width: 850px;
+}
+#map #content {
+	color: black;
+	width: 95%;
+	margin: 0 auto;
 }
 footer {
 	background-image: url(../images/menuBackground.jpg);
