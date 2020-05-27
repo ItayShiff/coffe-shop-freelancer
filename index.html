@@ -88,7 +88,15 @@
 							Zeno Waste
 						</h1>
 					</div>
-					...
+					<div class="swiper-slide">
+						<img src="./images/slider4.jpg" />
+						<div class="blackOverlay"></div>
+						<h1>
+							Second Slice Cafe<br />
+							Locally stoned<br />
+							Zeno Waste
+						</h1>
+					</div>
 				</div>
 				<!-- If we need pagination -->
 				<div class="swiper-pagination"></div>
@@ -142,7 +150,7 @@
 				<div id="menu">
 					<h2>Our Menu</h2>
 					<div class="gridInnerHomepage">
-						<img src="images/latte-art.jpg" />
+						<img src="images/eggsbenedict.png" />
 						<div fromright="true">
 							Locally farmed<br />Eggs Benedict<br />
 							served on in-house<br />
@@ -152,13 +160,13 @@
 							Organic spelt sconed<br />
 							with berries
 						</div>
-						<img src="images/latte-art.jpg" down="false" />
-						<img src="images/latte-art.jpg" down="true" />
+						<img src="images/sconed.jpg" down="false" />
+						<img src="images/sconed.jpg" down="true" />
 						<div down="false">
 							Organic spelt sconed<br />
 							with berries
 						</div>
-						<img src="images/latte-art.jpg" />
+						<img src="images/arabicabeans.jpg" />
 						<div fromright="true">Fair Trade Certified <br />Arabica Coffe Beans</div>
 					</div>
 					<div></div>
@@ -168,22 +176,25 @@
 					<h2>Contact Us</h2>
 					<div id="contactInnerText">
 						<div>
-							<div>
-								<label for="name">* Name:</label>
-								<input type="text" id="name" name="name" />
-							</div>
-							<div>
-								<label for="email">* Email:</label>
-								<input type="text" id="email" name="email" />
-							</div>
-							<div>
-								<label for="mobile">Mobile:</label>
-								<input type="text" id="mobile" name="mobile" />
-							</div>
-							<div>
-								<label for="message">Message:</label>
-								<textarea id="message"></textarea>
-							</div>
+							<form>
+								<div>
+									<label for="name">* Name:</label>
+									<input type="text" id="name" name="name" required />
+								</div>
+								<div>
+									<label for="email">* Email:</label>
+									<input type="email" id="email" name="email" required />
+								</div>
+								<div>
+									<label for="mobile">Mobile:</label>
+									<input type="text" id="mobile" name="mobile" />
+								</div>
+								<div>
+									<label for="message">Message:</label>
+									<textarea id="message" required></textarea>
+								</div>
+								<button type="submit" onclick="sendForm(event)">SUBMIT</button>
+							</form>
 						</div>
 						<div>
 							<div>
@@ -336,6 +347,15 @@
 				}
 			);
 			observerContact.observe(document.getElementById("contactInnerText"));
+
+			function sendForm(e) {
+				// only if the form is valid, and name & email & message was filled
+				if (e.target.parentNode.checkValidity()) {
+					e.preventDefault();
+					alert("Your message has been sent successfully.");
+					e.target.parentNode.reset();
+				}
+			}
 		</script>
 	</body>
 </html>

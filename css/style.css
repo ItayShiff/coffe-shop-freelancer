@@ -243,8 +243,8 @@ main {
 @media screen and (max-width: 900px) {
 	.gridInnerHomepage div {
 		opacity: 0;
-		transform: translateY(100px);
-		transition: transform 750ms, opacity 1s;
+		transform: translateY(120px);
+		transition: transform 750ms, opacity 1.2s;
 	}
 	.gridInnerHomepage div.entered {
 		opacity: 1;
@@ -285,18 +285,18 @@ main {
 	max-height: 50vh;
 }
 .gridInnerHomepage img:hover {
-	animation: slideSideToSide 1.95s linear infinite;
+	animation: slideSideToSide 2s linear infinite;
 }
 @keyframes slideSideToSide {
 	0% {
 		transform: rotateZ(0deg);
 	}
 	25% {
-		transform: rotateZ(5deg);
+		transform: rotateZ(4deg);
 	}
 
 	75% {
-		transform: rotateZ(-5deg);
+		transform: rotateZ(-4deg);
 	}
 	100% {
 		transform: rotateZ(0deg);
@@ -304,7 +304,7 @@ main {
 }
 #aboutus {
 	padding-bottom: 90px;
-	background-image: url(../images/aboutBackground.jpeg);
+	background-image: url(../images/aboutBackground.png);
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -390,6 +390,31 @@ main {
 }
 #contactInnerText > div:last-child div:first-child {
 	padding-bottom: 30px;
+}
+#contactInnerText form {
+	position: relative;
+	padding-bottom: 140px;
+}
+#contactInnerText button {
+	position: absolute;
+	left: 45%;
+	bottom: 0;
+	border-radius: 15px;
+	border: 3px solid #ffbd5b;
+	outline: none;
+	background: transparent;
+	color: #ffbd5b;
+	font-weight: bold;
+	padding: 15px 100px;
+	cursor: pointer;
+	transition: color 500ms, background 500ms;
+	font-size: 20px;
+	letter-spacing: 0.5px;
+	font-family: "Gotham";
+}
+#contactInnerText button:hover {
+	color: black;
+	background: #ffbd5b;
 }
 
 #map {
