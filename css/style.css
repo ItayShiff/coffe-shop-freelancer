@@ -578,8 +578,13 @@ footer > div:first-child div:last-of-type {
 	#contactInnerText > div:first-child div label {
 		left: 0;
 	}
+	#contactInnerText button {
+		width: 90%;
+		left: unset;
+		right: 0;
+	}
 	#contactInnerText > div:last-child {
-		margin-top: 350px;
+		margin-top: 420px;
 	}
 	.gridInnerHomepage {
 		grid-gap: 50px;
