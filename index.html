@@ -18,7 +18,7 @@
 		<link rel="manifest" href="manifest.json" />
 
 		<!-- The next stylesheet is for the slider -->
-		<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 	</head>
 	<body>
 		<header bigscreen="true">
@@ -228,6 +228,11 @@
 				</div>
 				<div onclick="window.scrollTo(0,0);">BACK TO TOP</div>
 			</div>
+			<div>
+				This website has been created as part of an assignment in an approved course of study for Curtin University and contains copyright material not created by the author. All
+				copyright material used remains copyright of the respective owners and has been used here pursuant to Section 40 of the Copyright Act 1968 (Commonwealth of Australia). No
+				part of this work may be reproduced without consent of the original copyright owners. See code comments for references.
+			</div>
 		</footer>
 
 		<script>
@@ -235,9 +240,9 @@
 				var mapProp = {
 					center: new google.maps.LatLng(-37.769348, 144.999268),
 					zoom: 15,
-				};
-				var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-				var marker = new google.maps.Marker({ position: { lat: -37.769348, lng: 144.999268 }, map: map });
+				}
+				var map = new google.maps.Map(document.getElementById("googleMap"), mapProp)
+				var marker = new google.maps.Marker({ position: { lat: -37.769348, lng: 144.999268 }, map: map })
 				var contentString =
 					'<div id="content">' +
 					"<h1>Second Slice Café</h1>" +
@@ -246,18 +251,18 @@
 						spot for coffee and small bites by the Northcote community. They have a
 						zero waste policy and use only organic locally sourced ingredients in all their
 						dishes.</p>` +
-					"</div>";
+					"</div>"
 
 				var infowindow = new google.maps.InfoWindow({
 					content: contentString,
-				});
+				})
 				marker.addListener("click", function () {
-					infowindow.open(map, marker);
-				});
+					infowindow.open(map, marker)
+				})
 			}
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDrcqzef-g6UoHT4nkQKfuRCOR-TjS15I&callback=myMap"></script>
-		<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsTLnZzwyyfwtKByzQAfeVRoYClcQLZp8&callback=myMap"></script>
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 		<script>
 			var mySwiper = new Swiper(".swiper-container", {
 				// Optional parameters
@@ -278,19 +283,19 @@
 					nextEl: ".swiper-button-next",
 					prevEl: ".swiper-button-prev",
 				},
-			});
+			})
 
 			document.getElementById("menuButton").onclick = () => {
-				document.getElementById("rollingMenu").classList.add("active");
-			};
+				document.getElementById("rollingMenu").classList.add("active")
+			}
 
 			function removeHeader() {
-				document.getElementById("rollingMenu").classList.remove("active");
+				document.getElementById("rollingMenu").classList.remove("active")
 			}
-			document.getElementById("xButton").onclick = removeHeader;
-			const clickableElements = document.getElementById("rollingMenu").children[1].children;
+			document.getElementById("xButton").onclick = removeHeader
+			const clickableElements = document.getElementById("rollingMenu").children[1].children
 			for (let element of clickableElements) {
-				element.onclick = removeHeader;
+				element.onclick = removeHeader
 			}
 
 			if (window.innerWidth > 900) {
@@ -299,61 +304,61 @@
 					(entries) => {
 						entries.forEach((entry) => {
 							if (entry.intersectionRatio > 0.33) {
-								entry.target.nextSibling.nextSibling.classList.add("entered");
+								entry.target.nextSibling.nextSibling.classList.add("entered")
 							}
-						});
+						})
 					},
 					{
 						threshold: [0.33],
 					}
-				);
-				document.querySelectorAll("div[fromright=true]").forEach((rightElem) => observerRight.observe(rightElem.previousSibling.previousSibling));
+				)
+				document.querySelectorAll("div[fromright=true]").forEach((rightElem) => observerRight.observe(rightElem.previousSibling.previousSibling))
 
 				const observerLeft = new IntersectionObserver(
 					(entries) => {
 						entries.forEach((entry) => {
 							if (entry.intersectionRatio > 0.33) {
-								entry.target.previousSibling.previousSibling.previousSibling.previousSibling.classList.add("entered");
+								entry.target.previousSibling.previousSibling.previousSibling.previousSibling.classList.add("entered")
 							}
-						});
+						})
 					},
 					{
 						threshold: [0.33],
 					}
-				);
-				document.querySelectorAll("div[fromright=false]").forEach((leftElem) => observerLeft.observe(leftElem.nextSibling.nextSibling.nextSibling.nextSibling));
+				)
+				document.querySelectorAll("div[fromright=false]").forEach((leftElem) => observerLeft.observe(leftElem.nextSibling.nextSibling.nextSibling.nextSibling))
 			} else {
 				// if it's less than 900px then go with mobile animation mode, just slide up the DIV
 				const observerUp = new IntersectionObserver((entries) => {
 					entries.forEach((entry) => {
 						if (entry.intersectionRatio > 0) {
-							entry.target.classList.add("entered");
+							entry.target.classList.add("entered")
 						}
-					});
-				});
-				document.querySelectorAll(".gridInnerHomepage div").forEach((elem) => observerUp.observe(elem));
+					})
+				})
+				document.querySelectorAll(".gridInnerHomepage div").forEach((elem) => observerUp.observe(elem))
 			}
 
 			const observerContact = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
 						if (entry.intersectionRatio > 0.33) {
-							entry.target.classList.add("entered");
+							entry.target.classList.add("entered")
 						}
-					});
+					})
 				},
 				{
 					threshold: [0.33],
 				}
-			);
-			observerContact.observe(document.getElementById("contactInnerText"));
+			)
+			observerContact.observe(document.getElementById("contactInnerText"))
 
 			function sendForm(e) {
 				// only if the form is valid, and name & email & message was filled
 				if (e.target.parentNode.checkValidity()) {
-					e.preventDefault();
-					alert("Your message has been sent successfully.");
-					e.target.parentNode.reset();
+					e.preventDefault()
+					alert("Your message has been sent successfully.")
+					e.target.parentNode.reset()
 				}
 			}
 		</script>
